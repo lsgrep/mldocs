@@ -1,5 +1,5 @@
 # Alfred mldocs
-> Alfred Workflow for TensorFlow, PyTorch Python API docs
+> Alfred Workflow for TensorFlow, PyTorch Python API docs(it requires `macOS`, `Alfred with Powerpack license`).
 
 ![demo](https://raw.githubusercontent.com/lsgrep/mldocs/master/assets/mldocs.gif)
 
