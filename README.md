@@ -3,6 +3,9 @@
 
 ![demo](https://raw.githubusercontent.com/lsgrep/mldocs/master/assets/mldocs.gif)
 
+## How to install
+Checkout the [Releases](https://github.com/lsgrep/mldocs/releases)
+
 ## How does it work
 - `mldocs` fetches the doc data from Github(`data/ml.json`), then cache the data for a few days
 - The first query will be slow then it will be pretty fast afterwards
