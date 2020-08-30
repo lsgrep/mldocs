@@ -1,10 +1,13 @@
 # Alfred mldocs
 > Alfred Workflow for TensorFlow, PyTorch Python API docs
 
-![demo](https://media.giphy.com/media/vFKqnCdLPNOKc/giphy.gif)
+![demo](https://raw.githubusercontent.com/lsgrep/mldocs/master/assets/mldocs.gif)
 
 ## How does it work
 - Workflow will fetch the doc data from Github, then cache the data for a few days
+
+## Clear Cache
+- `ml workflow:delcache`
 
 ## Commonly used keywords
 
