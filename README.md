@@ -4,7 +4,8 @@
 ![demo](https://raw.githubusercontent.com/lsgrep/mldocs/master/assets/mldocs.gif)
 
 ## How to install
-Checkout the [Releases](https://github.com/lsgrep/mldocs/releases)
+Checkout the [Releases](https://github.com/lsgrep/mldocs/releases), download `mldocs.alfredworkflow`, 
+double click(You have to have Alfred + Powerpack License).
 
 ## How does it work
 - `mldocs` fetches the doc data from Github(`data/ml.json`), then cache the data for a few days
