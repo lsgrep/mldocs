@@ -1,0 +1,10 @@
+{
+  "colab": {
+    "url": "http://colab.research.google.com/",
+    "desc": "Colab notebooks allow you to combine executable code and rich text in a single document, along with images, HTML, LaTeX and more"
+  },
+  "kaggle": {
+    "url": "https://www.kaggle.com/",
+    "desc": "Kaggle is the world's largest data science community with powerful tools and resources to help you achieve your data science goals."
+  }
+}
