@@ -34,6 +34,7 @@ If you want to add your favorite website or link please submit a PR(just edit th
 - Not supported yet, but will add them in the future.
 
 ## TODO
+- [ ] add [scikit-learn](https://scikit-learn.org/stable/modules/classes.html) support
 - [ ] add Github Actions to generate `ml.json`
 - [ ] add keyword descriptions for TensorFlow
 - [ ] add keyword descriptions for PyTorch
