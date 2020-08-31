@@ -7,7 +7,7 @@ import sys
 from workflow import Workflow3, web
 
 
-def get_tf_docs():
+def get_ml_docs():
     data_url = 'https://raw.githubusercontent.com/lsgrep/mldocs/master/data/ml.json'
     result = web.get(data_url)
     # throw an error if request failed
@@ -39,7 +39,7 @@ def main(wf):
     #     return
 
     wf.logger.debug(args)
-    ml_data = wf.cached_data('posts', get_tf_docs, max_age=3600 * 24 * 3)
+    ml_data = wf.cached_data('keywords', get_ml_docs, max_age=3600 * 24 * 3)
     keywords = ml_data.keys()
 
     for k in args:
