@@ -1,6 +1,7 @@
 #!/usr/bin/python
 # encoding: utf-8
 import json
+import os
 import sys
 
 # Workflow3 supports Alfred 3's new features. The `Workflow` class
@@ -21,6 +22,19 @@ def get_ml_docs_local():
     with open('data/ml.json') as f:
         data = json.load(f)
     return data
+
+
+def get_assets():
+    asset_dir = 'assets'
+    icon_suffix = '.icns'
+    assets = os.listdir(asset_dir)
+    res = []
+    for i in assets:
+        i = i.lower()
+        if i.endswith(icon_suffix):
+            asset, _ = i.split('.')
+            res.append([asset, '{}/{}'.format(asset_dir, i)])
+    return res
 
 
 def main(wf):
@@ -47,14 +61,18 @@ def main(wf):
 
     wf.logger.debug(args)
     ml_data = wf.cached_data('keywords', get_ml_docs, max_age=3600 * 24 * 3)
+    assets = dict(wf.cached_data('assets', get_assets, max_age=3600 * 24 * 7))
+
+    wf.logger.debug(assets)
+    asset_keywords = sorted(assets.keys(), key=len)
+    wf.logger.debug(asset_keywords)
+
     keywords = ml_data.keys()
 
     for k in args:
         keywords = [i for i in keywords if k.lower() in i.lower()]
 
     result = sorted(keywords, key=len)
-    assets_dir = 'assets'
-    supported_frameworks = ['tensorflow', 'pytorch', 'sklearn']
 
     for ml_keyword in result[:20]:
         doc_link = ml_data[ml_keyword]['url']
@@ -65,9 +83,10 @@ def main(wf):
             doc_desc = ml_data[ml_keyword]['desc']
         icon = None
 
-        for framework in supported_frameworks:
-            if framework in doc_link:
-                icon = '{}/{}.icns'.format(assets_dir, framework)
+        # if the asset is available
+        for k in asset_keywords:
+            if k in doc_link:
+                icon = assets[k]
 
         wf.add_item(title=ml_keyword,
                     subtitle=doc_desc,
