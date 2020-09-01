@@ -1,5 +1,5 @@
 # Alfred mldocs
-> Alfred Workflow for TensorFlow, PyTorch Python API docs(it requires `macOS`, `Alfred with Powerpack license`).
+> Alfred Workflow for TensorFlow, PyTorch, scikit-learn Python API docs(it requires `macOS`, `Alfred with Powerpack license`).
 
 ![demo](https://raw.githubusercontent.com/lsgrep/mldocs/master/assets/mldocs.gif)
 
@@ -34,10 +34,11 @@ If you want to add your favorite website or link please submit a PR(just edit th
 - Not supported yet, but will add them in the future.
 
 ## TODO
-- [ ] add [scikit-learn](https://scikit-learn.org/stable/modules/classes.html) support
+- [x] add [scikit-learn](https://scikit-learn.org/stable/modules/classes.html) support
 - [ ] add Github Actions to generate `ml.json`
 - [ ] add keyword descriptions for TensorFlow
 - [ ] add keyword descriptions for PyTorch
+
 
 ## Credits
 Icon made by [Becris](https://creativemarket.com/Becris) from [Flaticon](https://www.flaticon.com/)

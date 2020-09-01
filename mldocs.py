@@ -1,5 +1,6 @@
 #!/usr/bin/python
 # encoding: utf-8
+import json
 import sys
 
 # Workflow3 supports Alfred 3's new features. The `Workflow` class
@@ -14,6 +15,12 @@ def get_ml_docs():
     # Workflow will catch this and show it to the user
     result.raise_for_status()
     return result.json()
+
+
+def get_ml_docs_local():
+    with open('data/ml.json') as f:
+        data = json.load(f)
+    return data
 
 
 def main(wf):
@@ -46,11 +53,10 @@ def main(wf):
         keywords = [i for i in keywords if k.lower() in i.lower()]
 
     result = sorted(keywords, key=len)
+    assets_dir = 'assets'
+    supported_frameworks = ['tensorflow', 'pytorch', 'sklearn']
 
-    tf_icon = 'assets/tensorflow.icns'
-    torch_icon = 'assets/pytorch.icns'
-
-    for ml_keyword in result[:10]:
+    for ml_keyword in result[:20]:
         doc_link = ml_data[ml_keyword]['url']
         doc_desc = doc_link  # default value
 
@@ -59,11 +65,11 @@ def main(wf):
             doc_desc = ml_data[ml_keyword]['desc']
         icon = None
 
-        if 'torch' in doc_link:
-            icon = torch_icon
-        if 'tensorflow' in doc_link:
-            icon = tf_icon
+        for framework in supported_frameworks:
+            if framework in doc_link:
+                icon = '{}/{}.icns'.format(assets_dir, framework)
 
+        wf.logger.debug(icon)
         wf.add_item(title=ml_keyword,
                     subtitle=doc_desc,
                     arg=doc_link,

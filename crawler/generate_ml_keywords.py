@@ -3,6 +3,7 @@ import re
 
 import requests
 
+
 # TODO automate this process
 
 
@@ -11,6 +12,23 @@ def prepare_base_keywords():
     with open(base_file, 'r') as f:
         data = json.load(f)
     return data
+
+
+def prepare_sklearn_keywords():
+    data = {}
+    sklearn_index = 'https://scikit-learn.org/stable/modules/classes.html'
+    sklearn_base = 'https://scikit-learn.org/stable/modules'
+    resp = requests.get(sklearn_index)
+    pattern = 'href="(generated/[a-zA-Z._/#]+)"'
+    matches = re.findall(pattern, resp.text, re.DOTALL)
+    for i in matches:
+        if "." in i and "#" in i:
+            _, k = i.split('#')
+            k_url = f'{sklearn_base}/{i}'
+            keyword_metadata = {'url': k_url}
+            data[k] = keyword_metadata
+    return data
+
 
 def prepare_tf_keywords():
     data = {}
@@ -53,6 +71,7 @@ if __name__ == '__main__':
     data = prepare_base_keywords()
     data.update(prepare_tf_keywords())
     data.update(prepare_torch_keywords())
+    data.update(prepare_sklearn_keywords())
     output_file = '../data/ml.json'
     print(data)
     with open(output_file, 'w') as f:
