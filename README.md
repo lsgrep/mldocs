@@ -8,7 +8,7 @@ Checkout the [Releases](https://github.com/lsgrep/mldocs/releases), download `ml
 double click(You have to have Alfred + Powerpack License).
 
 ## How does it work
-- `mldocs` fetches the doc data from Github(`data/ml.json`), then cache the data for a few days
+- `mldocs` fetches the doc data from Github(`data/ml.json`), then caches the data for a few days
 - The first query will be slow then it will be pretty fast afterwards
 - The plan is to update the `ml.json` periodically, so you won't have to update the workflow manually
 

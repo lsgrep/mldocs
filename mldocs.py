@@ -69,7 +69,6 @@ def main(wf):
             if framework in doc_link:
                 icon = '{}/{}.icns'.format(assets_dir, framework)
 
-        wf.logger.debug(icon)
         wf.add_item(title=ml_keyword,
                     subtitle=doc_desc,
                     arg=doc_link,
