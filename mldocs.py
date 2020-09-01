@@ -62,10 +62,7 @@ def main(wf):
     wf.logger.debug(args)
     ml_data = wf.cached_data('keywords', get_ml_docs, max_age=3600 * 24 * 3)
     assets = dict(wf.cached_data('assets', get_assets, max_age=3600 * 24 * 7))
-
-    wf.logger.debug(assets)
     asset_keywords = sorted(assets.keys(), key=len)
-    wf.logger.debug(asset_keywords)
 
     keywords = ml_data.keys()
 
