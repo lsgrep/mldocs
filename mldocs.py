@@ -37,6 +37,10 @@ def get_assets():
     return res
 
 
+def parse_domain(link):
+    return link.split("//")[-1].split("/")[0]
+
+
 def main(wf):
     # The Workflow3 instance will be passed to the function
     # you call from `Workflow3.run`.
@@ -60,7 +64,7 @@ def main(wf):
     #     return
 
     wf.logger.debug(args)
-    ml_data = wf.cached_data('keywords', get_ml_docs, max_age=3600 * 24 * 3)
+    ml_data = wf.cached_data('keywords', get_ml_docs_local, max_age=3600 * 24 * 3)
     assets = dict(wf.cached_data('assets', get_assets, max_age=3600 * 24 * 7))
     asset_keywords = sorted(assets.keys(), key=len)
 
@@ -82,7 +86,7 @@ def main(wf):
 
         # if the asset is available
         for k in asset_keywords:
-            if k in doc_link:
+            if k in parse_domain(doc_link):
                 icon = assets[k]
 
         wf.add_item(title=ml_keyword,
