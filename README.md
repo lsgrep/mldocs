@@ -36,6 +36,8 @@ If you want to add your favorite website or link please submit a PR(just edit th
 
 ## TODO
 - [x] add [scikit-learn](https://scikit-learn.org/stable/modules/classes.html) support
+- [x] add NumPy support
+- [ ] add [pandas](https://pandas.pydata.org/pandas-docs/stable/genindex.html) support
 - [ ] add Github Actions to generate `ml.json`
 - [ ] add keyword descriptions for TensorFlow
 - [ ] add keyword descriptions for PyTorch
