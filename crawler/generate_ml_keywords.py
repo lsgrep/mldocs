@@ -14,6 +14,22 @@ def prepare_base_keywords():
     return data
 
 
+def prepare_numpy_keywords():
+    data = {}
+    numpy_index = 'https://numpy.org/doc/stable/genindex.html'
+    numpy_base = 'https://numpy.org/doc/stable'
+    resp = requests.get(numpy_index)
+    pattern = 'href="(reference/generated/[a-zA-Z._/#]+)"'
+    matches = re.findall(pattern, resp.text, re.DOTALL)
+    for i in matches:
+        if "." in i and "#" in i and "__" not in i:
+            _, k = i.split('#')
+            numpy_url = f'{numpy_base}/{i}'
+            keyword_metadata = {'url': numpy_url}
+            data[k] = keyword_metadata
+    return data
+
+
 def prepare_sklearn_keywords():
     data = {}
     sklearn_index = 'https://scikit-learn.org/stable/modules/classes.html'
@@ -72,6 +88,7 @@ if __name__ == '__main__':
     data.update(prepare_tf_keywords())
     data.update(prepare_torch_keywords())
     data.update(prepare_sklearn_keywords())
+    data.update(prepare_numpy_keywords())
     output_file = '../data/ml.json'
     print(data)
     with open(output_file, 'w') as f:
