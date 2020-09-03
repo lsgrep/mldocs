@@ -2,11 +2,10 @@ import json
 import re
 
 import requests
+import yaml
 
 
 # TODO automate this process
-
-
 def prepare_base_keywords():
     base_file = '../data/base.json'
     with open(base_file, 'r') as f:
@@ -14,39 +13,7 @@ def prepare_base_keywords():
     return data
 
 
-def prepare_numpy_keywords():
-    data = {}
-    numpy_index = 'https://numpy.org/doc/stable/genindex.html'
-    numpy_base = 'https://numpy.org/doc/stable'
-    resp = requests.get(numpy_index)
-    pattern = 'href="(reference/generated/[a-zA-Z._/#]+)"'
-    matches = re.findall(pattern, resp.text, re.DOTALL)
-    for i in matches:
-        if "." in i and "#" in i and "__" not in i:
-            _, k = i.split('#')
-            numpy_url = f'{numpy_base}/{i}'
-            keyword_metadata = {'url': numpy_url}
-            data[k] = keyword_metadata
-    return data
-
-
-def prepare_sklearn_keywords():
-    data = {}
-    sklearn_index = 'https://scikit-learn.org/stable/modules/classes.html'
-    sklearn_base = 'https://scikit-learn.org/stable/modules'
-    resp = requests.get(sklearn_index)
-    pattern = 'href="(generated/[a-zA-Z._/#]+)"'
-    matches = re.findall(pattern, resp.text, re.DOTALL)
-    for i in matches:
-        if "." in i and "#" in i:
-            _, k = i.split('#')
-            k_url = f'{sklearn_base}/{i}'
-            keyword_metadata = {'url': k_url}
-            data[k] = keyword_metadata
-    return data
-
-
-def prepare_tf_keywords():
+def parse_tf_docs():
     data = {}
     input_file = '/tmp/out/index.md'
     pattern = '<code>([a-zA-Z_.0-9]+)</code>'
@@ -66,30 +33,42 @@ def prepare_tf_keywords():
     return data
 
 
-def prepare_torch_keywords():
-    data = {}
-    pytorch_index_url = 'https://pytorch.org/docs/master/genindex.html'
-    pytorch_base_url = 'https://pytorch.org/docs/master'
-    resp = requests.get(pytorch_index_url)
-    pattern = 'href="([a-zA-Z0-9_./#]+)"'
-    matches = re.findall(pattern, resp.text, re.DOTALL)
+def load_seed_file(file_name):
+    with open(file_name, 'r') as stream:
+        seed = yaml.safe_load(stream)
+    return seed
 
-    for link in matches:
-        if '.' in link and '#' in link:
-            _, k = link.split('#')
-            pytorch_doc_url = f'{pytorch_base_url}/{link}'
-            keyword_metadata = {'url': pytorch_doc_url}  # TODO add docs
-            data[k] = keyword_metadata
+
+def parse_generated_docs(link, pattern=None):
+    data = {}
+    base_url = link[:link.rfind('/')]
+    resp = requests.get(link)
+    if pattern is None:
+        pattern = 'href="([a-zA-Z0-9_./#]+)"'
+    matches = re.findall(pattern, resp.text, re.DOTALL)
+    for href in matches:
+        # generated urls tend to have package name and '#' mark included.
+        # intentionally excluded __ functions
+        if '.' in href and '#' in href and '__' not in href:
+            _, k = href.split('#')
+            if '.' in k:  # keyword is a package name
+                doc_url = f'{base_url}/{href}'
+                metadata = {'url': doc_url}
+                data[k] = metadata
+
     return data
 
 
 if __name__ == '__main__':
     data = prepare_base_keywords()
-    data.update(prepare_tf_keywords())
-    data.update(prepare_torch_keywords())
-    data.update(prepare_sklearn_keywords())
-    data.update(prepare_numpy_keywords())
-    output_file = '../data/ml.json'
-    print(data)
-    with open(output_file, 'w') as f:
+    data.update(parse_tf_docs())
+    seed_file = 'seed.yaml'
+    seed = load_seed_file(seed_file)
+    for api_doc in seed['generated']:
+        print(f'processing: {api_doc["name"]}')
+        doc_url = api_doc['url']
+        data.update(parse_generated_docs(doc_url))
+
+    doc_file = '../data/ml.json'
+    with open(doc_file, 'w') as f:
         json.dump(data, f)
