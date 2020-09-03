@@ -41,6 +41,63 @@ def parse_domain(link):
     return link.split("//")[-1].split("/")[0]
 
 
+# expand commonly used prefixes
+# plt => pyplot
+# sns => seaborn
+# np => numpy
+# pd => pandas
+def expand_args(args):
+    for i, arg in enumerate(args):
+        arg = str(arg).lower()
+        args[i] = arg
+        if arg == 'plt':
+            args[i] = 'pyplot'
+            continue
+
+        if arg.startswith('plt.'):
+            _, rem = arg.split('.')
+            args[i] = 'pyplot.' + rem.lower()
+            continue
+
+        if arg == 'sns':
+            args[i] = 'seaborn'
+            continue
+
+        if arg.startswith('sns.'):
+            _, rem = arg.split('.')
+            args[i] = 'seaborn.' + rem
+            continue
+
+        if arg.lower() == 'np':
+            args[i] = 'numpy'
+            continue
+
+        if arg.startswith('np.'):
+            _, rem = arg.split('.')
+            args[i] = 'numpy.' + rem
+            continue
+
+        if arg.lower() == 'pd':
+            args[i] = 'pandas'
+            continue
+
+        if arg.startswith('pd.'):
+            _, rem = arg.split('.')
+            args[i] = 'pandas.' + rem
+            continue
+
+    return args
+
+
+def search(args, keywords):
+    # args is lower case already
+    args = expand_args(args)
+    for k in args:
+        keywords = [i for i in keywords if k in i.lower()]
+    result = sorted(keywords, key=len)
+    return result
+
+
 def main(wf):
     # The Workflow3 instance will be passed to the function
     # you call from `Workflow3.run`.
@@ -67,15 +124,9 @@ def main(wf):
     ml_data = wf.cached_data('keywords', get_ml_docs, max_age=3600 * 24 * 3)
     assets = dict(wf.cached_data('assets', get_assets, max_age=3600 * 24 * 7))
     asset_keywords = sorted(assets.keys(), key=len)
+    result = search(args, ml_data.keys())
 
-    keywords = ml_data.keys()
-
-    for k in args:
-        keywords = [i for i in keywords if k.lower() in i.lower()]
-
-    result = sorted(keywords, key=len)
-
-    for ml_keyword in result[:20]:
+    for ml_keyword in result[:30]:
         doc_link = ml_data[ml_keyword]['url']
         doc_desc = doc_link  # default value
 
