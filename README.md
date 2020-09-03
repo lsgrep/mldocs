@@ -3,13 +3,14 @@
 
 ![demo](https://raw.githubusercontent.com/lsgrep/mldocs/master/assets/mldocs.gif)
 
-## Supported Libraries
+## Supported Libraries(all stable versions)
 - TensorFlow
 - PyTorch
 - Numpy
 - Pandas
-- Matplotlib
+- Matplotlib 3
 - Scikit-learn
+- Statsmodels
 
 ## How to install
 Checkout the [Releases](https://github.com/lsgrep/mldocs/releases), download `mldocs.alfredworkflow`, 
@@ -43,10 +44,11 @@ If you want to add your favorite website or link please submit a PR(just edit th
 - Not supported yet, but will add them in the future.
 
 ## TODO
-- [x] add [scikit-learn](https://scikit-learn.org/stable/modules/classes.html) support
+- [x] add Scikit-learn support
 - [x] add NumPy support
-- [x] add [pandas](https://pandas.pydata.org/pandas-docs/stable/genindex.html) support
+- [x] add Pandas support 
 - [x] add Matplotlib support
+- [x] add Statsmodels support
 - [ ] add Github Actions to generate `ml.json`
 - [ ] add keyword descriptions for TensorFlow
 - [ ] add keyword descriptions for PyTorch
