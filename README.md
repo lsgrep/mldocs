@@ -18,7 +18,7 @@ Checkout the [Releases](https://github.com/lsgrep/mldocs/releases), download the
 then double click it(You have to have Alfred + Powerpack License).
 
 ## Conventions
-For convenience, a few prefixes are automatically expanded(see [PR](https://github.com/lsgrep/mldocs/compare/expand-conventions?expand=1) for more).
+For convenience, a few prefixes are automatically expanded(see [PR](https://github.com/lsgrep/mldocs/pull/8) for more).
 - `np` => `numpy`
 - `pd` => `pandas`
 - `plt` => `pyplot`
