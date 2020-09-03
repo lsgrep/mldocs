@@ -1,20 +1,20 @@
 # Alfred mldocs
-> Alfred Workflow for searching essential machine learning library API docs(it requires `macOS`, `Alfred with Powerpack license`).
+> Alfred workflow for searching essential machine learning library API docs(it requires `macOS`, `Alfred with Powerpack license`).
 
 ![demo](https://raw.githubusercontent.com/lsgrep/mldocs/master/assets/mldocs.gif)
 
 ## Supported Libraries(all stable versions unless specified otherwise)
 - [TensorFlow](https://www.tensorflow.org/api_docs/python/tf?hl=en)
 - [PyTorch](https://pytorch.org/docs/stable/index.html)
-- [Numpy](https://numpy.org/doc/stable/reference/)
+- [NumPy](https://numpy.org/doc/stable/reference/)
 - [Pandas](https://pandas.pydata.org/docs/reference/index.html)
 - [Matplotlib](https://matplotlib.org/3.2.2/api/index.html) `v3.2.2`
 - [Scikit-learn](https://scikit-learn.org/stable/modules/classes.html)
 - [Statsmodels](https://www.statsmodels.org/stable/index.html)
 
-## How to install
-Checkout the [Releases](https://github.com/lsgrep/mldocs/releases), download `mldocs.alfredworkflow`, 
-double click(You have to have Alfred + Powerpack License).
+## Install
+Checkout the [Releases](https://github.com/lsgrep/mldocs/releases), download the latest `mldocs.alfredworkflow`,
+then double click it(You have to have Alfred + Powerpack License).
 
 ## How does it work
 - `mldocs` fetches the doc data from Github(`data/ml.json`), then caches the data for a few days
