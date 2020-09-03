@@ -1,7 +1,15 @@
 # Alfred mldocs
-> Alfred Workflow for TensorFlow, PyTorch, scikit-learn, NumPy, pandas, Matplotlib Python API docs(it requires `macOS`, `Alfred with Powerpack license`).
+> Alfred Workflow for searching essential machine learning library API docs(it requires `macOS`, `Alfred with Powerpack license`).
 
 ![demo](https://raw.githubusercontent.com/lsgrep/mldocs/master/assets/mldocs.gif)
+
+## Supported Libraries
+- TensorFlow
+- PyTorch
+- Numpy
+- Pandas
+- Matplotlib
+- Scikit-learn
 
 ## How to install
 Checkout the [Releases](https://github.com/lsgrep/mldocs/releases), download `mldocs.alfredworkflow`, 
