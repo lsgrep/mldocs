@@ -3,14 +3,14 @@
 
 ![demo](https://raw.githubusercontent.com/lsgrep/mldocs/master/assets/mldocs.gif)
 
-## Supported Libraries(all stable versions)
-- TensorFlow
-- PyTorch
-- Numpy
-- Pandas
-- Matplotlib 3
-- Scikit-learn
-- Statsmodels
+## Supported Libraries(all stable versions unless specified otherwise)
+- [TensorFlow](https://www.tensorflow.org/api_docs/python/tf?hl=en)
+- [PyTorch](https://pytorch.org/docs/stable/index.html)
+- [Numpy](https://numpy.org/doc/stable/reference/)
+- [Pandas](https://pandas.pydata.org/docs/reference/index.html)
+- [Matplotlib](https://matplotlib.org/3.2.2/api/index.html) `v3.2.2`
+- [Scikit-learn](https://scikit-learn.org/stable/modules/classes.html)
+- [Statsmodels](https://www.statsmodels.org/stable/index.html)
 
 ## How to install
 Checkout the [Releases](https://github.com/lsgrep/mldocs/releases), download `mldocs.alfredworkflow`, 
