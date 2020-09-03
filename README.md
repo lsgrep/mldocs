@@ -11,6 +11,7 @@
 - [Matplotlib](https://matplotlib.org/3.2.2/api/index.html) `v3.2.2`
 - [Scikit-learn](https://scikit-learn.org/stable/modules/classes.html)
 - [Statsmodels](https://www.statsmodels.org/stable/index.html)
+- [Seaborn](https://seaborn.pydata.org/api.html)
 
 ## How to install
 Checkout the [Releases](https://github.com/lsgrep/mldocs/releases), download `mldocs.alfredworkflow`, 
@@ -49,6 +50,7 @@ If you want to add your favorite website or link please submit a PR(just edit th
 - [x] add Pandas support 
 - [x] add Matplotlib support
 - [x] add Statsmodels support
+- [x] add Seaborn support
 - [ ] add Github Actions to generate `ml.json`
 - [ ] add keyword descriptions for TensorFlow
 - [ ] add keyword descriptions for PyTorch
