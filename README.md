@@ -1,7 +1,16 @@
 # Alfred mldocs
-> Alfred Workflow for TensorFlow, PyTorch, scikit-learn, NumPy Python API docs(it requires `macOS`, `Alfred with Powerpack license`).
+> Alfred Workflow for searching essential machine learning library API docs(it requires `macOS`, `Alfred with Powerpack license`).
 
 ![demo](https://raw.githubusercontent.com/lsgrep/mldocs/master/assets/mldocs.gif)
+
+## Supported Libraries(all stable versions unless specified otherwise)
+- [TensorFlow](https://www.tensorflow.org/api_docs/python/tf?hl=en)
+- [PyTorch](https://pytorch.org/docs/stable/index.html)
+- [Numpy](https://numpy.org/doc/stable/reference/)
+- [Pandas](https://pandas.pydata.org/docs/reference/index.html)
+- [Matplotlib](https://matplotlib.org/3.2.2/api/index.html) `v3.2.2`
+- [Scikit-learn](https://scikit-learn.org/stable/modules/classes.html)
+- [Statsmodels](https://www.statsmodels.org/stable/index.html)
 
 ## How to install
 Checkout the [Releases](https://github.com/lsgrep/mldocs/releases), download `mldocs.alfredworkflow`, 
@@ -35,9 +44,11 @@ If you want to add your favorite website or link please submit a PR(just edit th
 - Not supported yet, but will add them in the future.
 
 ## TODO
-- [x] add [scikit-learn](https://scikit-learn.org/stable/modules/classes.html) support
+- [x] add Scikit-learn support
 - [x] add NumPy support
-- [ ] add [pandas](https://pandas.pydata.org/pandas-docs/stable/genindex.html) support
+- [x] add Pandas support 
+- [x] add Matplotlib support
+- [x] add Statsmodels support
 - [ ] add Github Actions to generate `ml.json`
 - [ ] add keyword descriptions for TensorFlow
 - [ ] add keyword descriptions for PyTorch
