@@ -17,6 +17,13 @@
 Checkout the [Releases](https://github.com/lsgrep/mldocs/releases), download the latest `mldocs.alfredworkflow`,
 then double click it(You have to have Alfred + Powerpack License).
 
+## Conventions
+For convenience, a few prefixes are automatically expanded(see [PR](https://github.com/lsgrep/mldocs/compare/expand-conventions?expand=1) for more).
+- `np` => `numpy`
+- `pd` => `pandas`
+- `plt` => `pyplot`
+- `sns` => `seaborn`
+
 ## How does it work
 - `mldocs` fetches the doc data from Github(`data/ml.json`), then caches the data for a few days
 - The first query will be slow then it will be pretty fast afterwards
