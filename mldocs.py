@@ -28,12 +28,12 @@ def get_assets():
     asset_dir = 'assets'
     icon_suffix = '.icns'
     assets = os.listdir(asset_dir)
-    res = []
+    res = {}
     for i in assets:
         i = i.lower()
         if i.endswith(icon_suffix):
             asset, _ = i.split('.')
-            res.append([asset, '{}/{}'.format(asset_dir, i)])
+            res[asset] = '{}/{}'.format(asset_dir, i)
     return res
 
 
@@ -122,7 +122,7 @@ def main(wf):
 
     wf.logger.debug(args)
     ml_data = wf.cached_data('keywords', get_ml_docs, max_age=3600 * 24 * 3)
-    assets = dict(wf.cached_data('assets', get_assets, max_age=3600 * 24 * 7))
+    assets = wf.cached_data('assets', get_assets, max_age=3600 * 24 * 7)
     asset_keywords = sorted(assets.keys(), key=len)
     result = search(args, ml_data.keys())
 
