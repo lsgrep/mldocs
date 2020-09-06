@@ -4,6 +4,8 @@ import json
 import os
 import sys
 
+import requests
+
 # Workflow3 supports Alfred 3's new features. The `Workflow` class
 # is also compatible with Alfred 2.
 from workflow import Workflow3, web
@@ -121,30 +123,41 @@ def main(wf):
     #     return
 
     wf.logger.debug(args)
-    ml_data = wf.cached_data('keywords', get_ml_docs, max_age=3600 * 24 * 3)
+    ml_data = wf.cached_data('keywords', get_ml_docs_local, max_age=3600 * 24 * 3)
     assets = wf.cached_data('assets', get_assets, max_age=3600 * 24 * 7)
     asset_keywords = sorted(assets.keys(), key=len)
-    result = search(args, ml_data.keys())
 
-    for ml_keyword in result[:30]:
-        doc_link = ml_data[ml_keyword]['url']
-        doc_desc = doc_link  # default value
-
-        # if there is a desc, we use it
-        if 'desc' in ml_data[ml_keyword] and ml_data[ml_keyword]['desc']:
-            doc_desc = ml_data[ml_keyword]['desc']
-        icon = None
-
-        # if the asset is available
-        for k in asset_keywords:
-            if k in parse_domain(doc_link):
-                icon = assets[k]
-
-        wf.add_item(title=ml_keyword,
-                    subtitle=doc_desc,
-                    arg=doc_link,
+    if len(args) > 1 and args[0] == 'gds':
+        gds_search = 'https://datasetsearch.research.google.com/search?query='
+        query_str = ' '.join(args[1:])
+        wf.logger.debug(gds_search + requests.utils.quote(query_str))
+        wf.add_item(title='Google Dataset Search',
+                    subtitle='Google Dataset Search',
+                    arg=gds_search + requests.utils.quote(query_str),
                     valid=True,
-                    icon=icon)
+                    icon=assets['google'])
+
+    else:
+        result = search(args, ml_data.keys())
+        for ml_keyword in result[:30]:
+            doc_link = ml_data[ml_keyword]['url']
+            doc_desc = doc_link  # default value
+
+            # if there is a desc, we use it
+            if ml_data[ml_keyword].get('desc'):
+                doc_desc = ml_data[ml_keyword]['desc']
+            icon = None
+
+            # if the asset is available
+            for k in asset_keywords:
+                if k in parse_domain(doc_link):
+                    icon = assets[k]
+
+            wf.add_item(title=ml_keyword,
+                        subtitle=doc_desc,
+                        arg=doc_link,
+                        valid=True,
+                        icon=icon)
 
     # Send output to Alfred. You can only call this once.
     # Well, you *can* call it multiple times, but subsequent calls

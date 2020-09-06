@@ -10,5 +10,13 @@
   "?": {
     "url": "https://github.com/lsgrep/mldocs",
     "desc": "report mldocs bugs, or ask questions if you have any"
+  },
+  "google dataset search": {
+    "url": "https://datasetsearch.research.google.com/",
+    "desc": "Google Dataset Search"
+  },
+  "gds": {
+    "url": "https://datasetsearch.research.google.com/",
+    "desc": "Google Dataset Search"
   }
 }
