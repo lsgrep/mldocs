@@ -130,9 +130,10 @@ def main(wf):
     if len(args) > 1 and args[0] == 'gds':
         gds_search = 'https://datasetsearch.research.google.com/search?query='
         query_str = ' '.join(args[1:])
-        wf.add_item(title='Google Dataset Search',
-                    subtitle='Google Dataset Search',
-                    arg=gds_search + requests.utils.quote(query_str),
+        query_url = gds_search + requests.utils.quote(query_str)
+        wf.add_item(title='Google Dataset Search' + ' ' + query_str,
+                    subtitle=query_url,
+                    arg=query_url,
                     valid=True,
                     icon=assets['google'])
 
