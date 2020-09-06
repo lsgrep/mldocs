@@ -52,6 +52,7 @@ You can enter the query directly in the Alfred with the keyword `ml gds KEYWORD.
 
 ## [Papers With Code](https://paperswithcode.com/)
 You can enter the query directly in the Alfred with the keyword `ml paper KEYWORD...`
+![demo](https://raw.githubusercontent.com/lsgrep/mldocs/master/assets/papers-with-code-demo.jpg)
 
 ## Supported Versions
 - `ml.json` will be periodically updated to the latest versions of TensorFlow & PyTorch
