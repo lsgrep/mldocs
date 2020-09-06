@@ -1,6 +1,5 @@
 # Alfred mldocs
 > Alfred workflow for searching essential machine learning library API docs(it requires `macOS`, `Alfred with Powerpack license`).
-
 ![demo](https://raw.githubusercontent.com/lsgrep/mldocs/master/assets/mldocs.gif)
 
 ## Supported Libraries(all stable versions unless specified otherwise)
@@ -45,6 +44,7 @@ If you want to add your favorite website or link please submit a PR(just edit th
 | `kaggle` | `https://www.kaggle.com/` |    | 
 | `Google Dataset Search` | `https://datasetsearch.research.google.com/` |    | 
 | `gds` | `https://datasetsearch.research.google.com/` |    | 
+| `paper` | `https://paperswithcode.com/` |    |
 
 ## Google Dataset Search
 You can enter the query directly in the Alfred with the keyword `ml gds KEYWORD...`
