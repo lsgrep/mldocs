@@ -18,5 +18,9 @@
   "gds": {
     "url": "https://datasetsearch.research.google.com/",
     "desc": "Google Dataset Search"
+  },
+  "papers with code": {
+    "url": "https://paperswithcode.com/",
+    "desc": "Papers With Code highlights trending ML research and the code to implement it."
   }
 }
