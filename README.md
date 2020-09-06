@@ -4,7 +4,7 @@
 ![demo](https://raw.githubusercontent.com/lsgrep/mldocs/master/assets/mldocs.gif)
 
 ## Supported Libraries(all stable versions unless specified otherwise)
-- [TensorFlow](https://www.tensorflow.org/api_docs/python/tf?hl=en)
+- [TensorFlow](https://www.tensorflow.org/api_docs/python/tf?hl=en) `nightly`
 - [PyTorch](https://pytorch.org/docs/stable/index.html)
 - [NumPy](https://numpy.org/doc/stable/reference/)
 - [Pandas](https://pandas.pydata.org/docs/reference/index.html)
@@ -43,10 +43,14 @@ If you want to add your favorite website or link please submit a PR(just edit th
 | `?`     | `https://github.com/lsgrep/mldocs`  |   |
 | `colab` | `http://colab.research.google.com/`  |   |
 | `kaggle` | `https://www.kaggle.com/` |    | 
+| `Google Dataset Search` | `https://datasetsearch.research.google.com/` |    | 
+| `gds` | `https://datasetsearch.research.google.com/` |    | 
 
+## Google Dataset Search
+You can enter the query directly in the Alfred with the keyword `ml gds KEYWORD...`
 
 ## Supported Versions
-- `ml.json` will be periodically updated to the latest stable versions of TensorFlow & PyTorch
+- `ml.json` will be periodically updated to the latest versions of TensorFlow & PyTorch
 
 ## Keyword Descriptions
 - Not supported yet, but will add them in the future.
