@@ -123,7 +123,7 @@ def main(wf):
     #     return
 
     wf.logger.debug(args)
-    ml_data = wf.cached_data('keywords', get_ml_docs, max_age=3600 * 24 * 3)
+    ml_data = wf.cached_data('keywords', get_ml_docs_local, max_age=3600 * 24 * 3)
     assets = wf.cached_data('assets', get_assets, max_age=3600 * 24 * 7)
     asset_keywords = sorted(assets.keys(), key=len)
 
@@ -131,12 +131,20 @@ def main(wf):
         gds_search = 'https://datasetsearch.research.google.com/search?query='
         query_str = ' '.join(args[1:])
         query_url = gds_search + requests.utils.quote(query_str)
-        wf.add_item(title='Google Dataset Search' + ' ' + query_str,
+        wf.add_item(title='Google Dataset Search ' + query_str,
                     subtitle=query_url,
                     arg=query_url,
                     valid=True,
                     icon=assets['google'])
-
+    elif len(args) > 1 and args[0] == 'paper':
+        paper_search = 'http://paperswithcode.com/search?q='
+        query_str = ' '.join(args[1:])
+        query_url = paper_search + requests.utils.quote(query_str)
+        wf.add_item(title='Paper With Code ' + query_str,
+                    subtitle=query_url,
+                    arg=query_url,
+                    valid=True,
+                    icon=assets['paper'])
     else:
         result = search(args, ml_data.keys())
         for ml_keyword in result[:30]:
