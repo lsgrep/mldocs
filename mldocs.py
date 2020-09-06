@@ -123,7 +123,7 @@ def main(wf):
     #     return
 
     wf.logger.debug(args)
-    ml_data = wf.cached_data('keywords', get_ml_docs_local, max_age=3600 * 24 * 3)
+    ml_data = wf.cached_data('keywords', get_ml_docs, max_age=3600 * 24 * 3)
     assets = wf.cached_data('assets', get_assets, max_age=3600 * 24 * 7)
     asset_keywords = sorted(assets.keys(), key=len)
 

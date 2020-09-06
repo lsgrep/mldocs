@@ -47,10 +47,10 @@ If you want to add your favorite website or link please submit a PR(just edit th
 | `gds` | `https://datasetsearch.research.google.com/` |    | 
 
 ## Google Dataset Search
-
+You can enter the query directly in the Alfred with the keyword mldocs gds KEYWORD...
 
 ## Supported Versions
-- `ml.json` will be periodically updated to the latest stable versions of TensorFlow & PyTorch
+- `ml.json` will be periodically updated to the latest versions of TensorFlow & PyTorch
 
 ## Keyword Descriptions
 - Not supported yet, but will add them in the future.
