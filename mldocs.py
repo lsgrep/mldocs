@@ -151,7 +151,7 @@ def main(wf):
             # will use all the args
             custom_search(title, base_url=google_search, asset=assets['google'], args_index=0)
         else:
-            for ml_keyword in result[:30]:
+            for ml_keyword in result[:15]:
                 doc_link = ml_data[ml_keyword]['url']
                 doc_desc = doc_link  # default value
 
