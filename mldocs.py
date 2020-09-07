@@ -100,6 +100,17 @@ def search(args, keywords):
     return result
 
 
+def custom_search(title, base_url, asset, args_index=1):
+    global wf
+    query_str = ' '.join(wf.args[args_index:])
+    query_url = base_url + requests.utils.quote(query_str)
+    wf.add_item(title=title + ' ' + query_str,
+                subtitle=query_url,
+                arg=query_url,
+                valid=True,
+                icon=asset)
+
+
 # make one big pickle, and make single disk read
 def get_data():
     return get_ml_docs(), get_assets()
@@ -125,34 +136,20 @@ def main(wf):
 
     if len(args) > 1 and args[0] == 'gds':
         gds_search = 'https://datasetsearch.research.google.com/search?query='
-        query_str = ' '.join(wf.args[1:])
-        query_url = gds_search + requests.utils.quote(query_str)
-        wf.add_item(title='Google Dataset Search ' + query_str,
-                    subtitle=query_url,
-                    arg=query_url,
-                    valid=True,
-                    icon=assets['google'])
+        title = 'Google Dataset Search'
+        custom_search(title, base_url=gds_search, asset=assets['google'])
     elif len(args) > 1 and args[0] == 'paper':
         paper_search = 'http://paperswithcode.com/search?q='
-        query_str = ' '.join(wf.args[1:])
-        query_url = paper_search + requests.utils.quote(query_str)
-        wf.add_item(title='Paper With Code ' + query_str,
-                    subtitle=query_url,
-                    arg=query_url,
-                    valid=True,
-                    icon=assets['paper'])
+        title = 'Paper With Code'
+        custom_search(title, base_url=paper_search, asset=assets['paper'])
     else:
         result = search(args, ml_data.keys())
         # nothing to be found, let's Google
         if len(result) == 0:
             google_search = 'https://www.google.com/search?q='
-            query_str = ' '.join(wf.args)
-            query_url = google_search + requests.utils.quote(query_str)
-            wf.add_item(title='Google Search ' + query_str,
-                        subtitle=query_url,
-                        arg=query_url,
-                        valid=True,
-                        icon=assets['google'])
+            title = 'Google Search'
+            # will use all the args
+            custom_search(title, base_url=google_search, asset=assets['google'], args_index=0)
         else:
             for ml_keyword in result[:30]:
                 doc_link = ml_data[ml_keyword]['url']
