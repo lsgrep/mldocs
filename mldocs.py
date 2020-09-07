@@ -114,22 +114,20 @@ def main(wf):
 
     # Get args from Workflow3, already in normalized Unicode.
     # This is also necessary for "magic" arguments to work.
-    args = wf.args
-
+    args = [i.lower() for i in wf.args]
     # command_delete_cache = "workflow:delcache"
     # if len(args) > 0 and args[0].lower() == command_delete_cache:
     #     wf.clear_cache()
     #     wf.send_feedback()
     #     return
-
     wf.logger.debug(args)
-    ml_data = wf.cached_data('keywords', get_ml_docs_local, max_age=3600 * 24 * 3)
+    ml_data = wf.cached_data('keywords', get_ml_docs, max_age=3600 * 24 * 3)
     assets = wf.cached_data('assets', get_assets, max_age=3600 * 24 * 7)
     asset_keywords = sorted(assets.keys(), key=len)
 
     if len(args) > 1 and args[0] == 'gds':
         gds_search = 'https://datasetsearch.research.google.com/search?query='
-        query_str = ' '.join(args[1:])
+        query_str = ' '.join(wf.args[1:])
         query_url = gds_search + requests.utils.quote(query_str)
         wf.add_item(title='Google Dataset Search ' + query_str,
                     subtitle=query_url,
@@ -138,7 +136,7 @@ def main(wf):
                     icon=assets['google'])
     elif len(args) > 1 and args[0] == 'paper':
         paper_search = 'http://paperswithcode.com/search?q='
-        query_str = ' '.join(args[1:])
+        query_str = ' '.join(wf.args[1:])
         query_url = paper_search + requests.utils.quote(query_str)
         wf.add_item(title='Paper With Code ' + query_str,
                     subtitle=query_url,
