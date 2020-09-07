@@ -143,25 +143,36 @@ def main(wf):
                     icon=assets['paper'])
     else:
         result = search(args, ml_data.keys())
-        for ml_keyword in result[:30]:
-            doc_link = ml_data[ml_keyword]['url']
-            doc_desc = doc_link  # default value
-
-            # if there is a desc, we use it
-            if ml_data[ml_keyword].get('desc'):
-                doc_desc = ml_data[ml_keyword]['desc']
-            icon = None
-
-            # if the asset is available
-            for k in asset_keywords:
-                if k in parse_domain(doc_link):
-                    icon = assets[k]
-
-            wf.add_item(title=ml_keyword,
-                        subtitle=doc_desc,
-                        arg=doc_link,
+        # nothing to be found, let's Google
+        if len(result) == 0:
+            google_search = 'https://www.google.com/search?q='
+            query_str = ' '.join(wf.args)
+            query_url = google_search + requests.utils.quote(query_str)
+            wf.add_item(title='Google Search ' + query_str,
+                        subtitle=query_url,
+                        arg=query_url,
                         valid=True,
-                        icon=icon)
+                        icon=assets['google'])
+        else:
+            for ml_keyword in result[:30]:
+                doc_link = ml_data[ml_keyword]['url']
+                doc_desc = doc_link  # default value
+
+                # if there is a desc, we use it
+                if ml_data[ml_keyword].get('desc'):
+                    doc_desc = ml_data[ml_keyword]['desc']
+                icon = None
+
+                # if the asset is available
+                for k in asset_keywords:
+                    if k in parse_domain(doc_link):
+                        icon = assets[k]
+
+                wf.add_item(title=ml_keyword,
+                            subtitle=doc_desc,
+                            arg=doc_link,
+                            valid=True,
+                            icon=icon)
 
     # Send output to Alfred. You can only call this once.
     # Well, you *can* call it multiple times, but subsequent calls
