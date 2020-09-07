@@ -2,6 +2,7 @@
 # encoding: utf-8
 import json
 import os
+import string
 import sys
 
 import requests
@@ -32,8 +33,7 @@ def get_assets():
     assets = os.listdir(asset_dir)
     res = {}
     for i in assets:
-        i = i.lower()
-        if i.endswith(icon_suffix):
+        if i.lower().endswith(icon_suffix):
             asset, _ = i.split('.')
             res[asset] = '{}/{}'.format(asset_dir, i)
     return res
@@ -50,15 +50,13 @@ def parse_domain(link):
 # pd => pandas
 def expand_args(args):
     for i, arg in enumerate(args):
-        arg = str(arg).lower()
-        args[i] = arg
         if arg == 'plt':
             args[i] = 'pyplot'
             continue
 
         if arg.startswith('plt.'):
             _, rem = arg.split('.')
-            args[i] = 'pyplot.' + rem.lower()
+            args[i] = 'pyplot.' + rem
             continue
 
         if arg == 'sns':
@@ -94,10 +92,17 @@ def expand_args(args):
 def search(args, keywords):
     # args is lower case already
     args = expand_args(args)
+    # performance hack, eliminate dot expression
+    lower = string.lower
     for k in args:
-        keywords = [i for i in keywords if k in i.lower()]
+        keywords = [i for i in keywords if k in lower(i)]
     result = sorted(keywords, key=len)
     return result
+
+
+# make one big pickle, and make single disk read
+def get_data():
+    return get_ml_docs(), get_assets()
 
 
 def main(wf):
@@ -115,14 +120,7 @@ def main(wf):
     # Get args from Workflow3, already in normalized Unicode.
     # This is also necessary for "magic" arguments to work.
     args = [i.lower() for i in wf.args]
-    # command_delete_cache = "workflow:delcache"
-    # if len(args) > 0 and args[0].lower() == command_delete_cache:
-    #     wf.clear_cache()
-    #     wf.send_feedback()
-    #     return
-    wf.logger.debug(args)
-    ml_data = wf.cached_data('keywords', get_ml_docs, max_age=3600 * 24 * 3)
-    assets = wf.cached_data('assets', get_assets, max_age=3600 * 24 * 7)
+    ml_data, assets = wf.cached_data('data', get_data, max_age=3600 * 24 * 3)
     asset_keywords = sorted(assets.keys(), key=len)
 
     if len(args) > 1 and args[0] == 'gds':
