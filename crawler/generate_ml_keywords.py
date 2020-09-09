@@ -13,11 +13,11 @@ def prepare_base_keywords():
     return data
 
 
-def parse_tf_docs(tf_doc_url=None):
+def parse_tf_docs(tf_doc_url=None, prefix='tf'):
     data = {}
     base_url = tf_doc_url.split('?')[0]
     content = requests.get(tf_doc_url).text
-    pattern = f"({base_url}/tf/[a-zA-Z0-9_./#]+)"
+    pattern = f"({base_url}/{prefix}/[a-zA-Z0-9_./#]+)"
     matches = re.findall(pattern, content, re.DOTALL)
     for link in matches:
         keyword_i = len(base_url) + 1
@@ -78,8 +78,10 @@ if __name__ == '__main__':
     data = prepare_base_keywords()
     seed_file = 'seed.yaml'
     seed = load_seed_file(seed_file)
-    tensorflow_doc = seed['tensorflow'][0]
-    data.update(parse_tf_docs(tensorflow_doc['url']))
+    for tensorflow_doc in seed['tensorflow']:
+        print(f'processing: {tensorflow_doc["name"]}')
+        crawled = parse_tf_docs(tensorflow_doc['url'], tensorflow_doc['prefix'])
+        data.update(crawled)
     for api_doc in seed['generated']:
         print(f'processing: {api_doc["name"]}')
         doc_url = api_doc['url']
