@@ -1,6 +1,7 @@
 #!/usr/bin/python
 # encoding: utf-8
 import json
+import math
 import os
 import string
 import sys
@@ -89,6 +90,16 @@ def expand_args(args):
     return args
 
 
+# Perfectly balanced, as all things should be
+def search_priority_len(k):
+    if "keras" in k.lower():
+        return len(k) * (1 + math.pi) / 10.0
+    if "torch" in k.lower():
+        return len(k) * math.pi / 4.0
+    else:
+        return len(k)
+
+
 def search(args, keywords):
     # args is lower case already
     args = expand_args(args)
@@ -96,7 +107,7 @@ def search(args, keywords):
     lower = string.lower
     for k in args:
         keywords = [i for i in keywords if k in lower(i)]
-    result = sorted(keywords, key=len)
+    result = sorted(keywords, key=search_priority_len)
     return result
 
 
