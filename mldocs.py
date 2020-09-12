@@ -151,7 +151,7 @@ def main(wf):
         custom_search(title, base_url=gds_search, asset=assets['google'])
     elif len(args) > 1 and args[0] == 'paper':
         paper_search = 'http://paperswithcode.com/search?q='
-        title = 'Paper With Code'
+        title = 'Papers With Code'
         custom_search(title, base_url=paper_search, asset=assets['paper'])
     else:
         result = search(args, ml_data.keys())
