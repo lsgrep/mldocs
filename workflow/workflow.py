@@ -2067,6 +2067,7 @@ class Workflow(object):
             # initialise `self.settings`, which will raise an exception
             # if `settings.json` isn't valid.
             if self._update_settings:
+                self.logger.debug('checking update...')
                 self.check_update()
 
             # Run workflow's entry function/method

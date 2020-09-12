@@ -8,6 +8,7 @@ import sys
 
 import requests
 
+from workflow import ICON_INFO
 # Workflow3 supports Alfred 3's new features. The `Workflow` class
 # is also compatible with Alfred 2.
 from workflow import Workflow3, web
@@ -190,7 +191,18 @@ def main(wf):
 
 if __name__ == '__main__':
     # Create a global `Workflow3` object
-    wf = Workflow3()
+    github_slug = 'lsgrep/mldocs'
+    help_url = 'https://github.com/' + github_slug
+    wf = Workflow3(update_settings={'github_slug': 'lsgrep/mldocs',
+                                    'frequency': 7,
+                                    help_url: help_url})
+    if wf.update_available:
+        # Add a notification to top of Script Filter results
+        wf.add_item('New version available',
+                    'Upgrade mldocs workflow',
+                    autocomplete='workflow:update',
+                    icon=ICON_INFO)
+
     # Call your entry function via `Workflow3.run()` to enable its
     # helper functions, like exception catching, ARGV normalization,
     # magic arguments etc.
