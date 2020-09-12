@@ -198,7 +198,9 @@ if __name__ == '__main__':
         wf.add_item('New version available',
                     'Upgrade mldocs workflow',
                     autocomplete='workflow:update',
-                    icon=ICON_INFO)  # Call your entry function via `Workflow3.run()` to enable its
+                    icon=ICON_INFO)
+
+    # Call your entry function via `Workflow3.run()` to enable its
     # helper functions, like exception catching, ARGV normalization,
     # magic arguments etc.
     sys.exit(wf.run(main))
