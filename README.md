@@ -17,8 +17,10 @@ Checkout the [Releases](https://github.com/lsgrep/mldocs/releases), download the
 then double click it(You have to have Alfred + Powerpack License).
 
 ## Update
-There is a background process that checks update interleaving 7 days, 
-and there will an option to upgrade to the latest version.
+There is a background process that checks update every 7 days, 
+and there will be an option to upgrade to the latest version.
+![demo](https://raw.githubusercontent.com/lsgrep/mldocs/master/assets/update-demo.jpg)
+
 - `ml workflow:update` will force update.
 - `ml workflow:noautoupdate` will turn off the auto update.
 - `ml workflow:autoupdate` will enable the auto update.
@@ -74,7 +76,7 @@ You can enter the query directly in the Alfred with the keyword `ml paper KEYWOR
 - [x] add Matplotlib support
 - [x] add Statsmodels support
 - [x] add Seaborn support
-- [ ] add Automatic Update
+- [x] add Automatic Update
 - [ ] add Github Actions to generate `ml.json`
 - [ ] add keyword descriptions for TensorFlow
 - [ ] add keyword descriptions for PyTorch

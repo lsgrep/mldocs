@@ -194,7 +194,7 @@ if __name__ == '__main__':
     github_slug = 'lsgrep/mldocs'
     help_url = 'https://github.com/' + github_slug
     wf = Workflow3(update_settings={'github_slug': 'lsgrep/mldocs',
-                                    'frequency': 7,
+                                    'frequency': 0,
                                     help_url: help_url})
     if wf.update_available:
         # Add a notification to top of Script Filter results
