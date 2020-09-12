@@ -16,6 +16,13 @@
 Checkout the [Releases](https://github.com/lsgrep/mldocs/releases), download the latest `mldocs.alfredworkflow`,
 then double click it(You have to have Alfred + Powerpack License).
 
+## Update
+There is a background process that checks update interleaving 7 days, 
+and there will an option to upgrade to the latest version.
+- `ml workflow:update` will force update.
+- `ml workflow:noautoupdate` will turn off the auto update.
+- `ml workflow:autoupdate` will enable the auto update.
+
 ## Conventions
 For convenience, a few prefixes are automatically expanded(see [PR](https://github.com/lsgrep/mldocs/pull/8) for more).
 - `np` => `numpy`
