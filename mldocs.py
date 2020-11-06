@@ -57,7 +57,7 @@ def expand_args(args):
             continue
 
         if arg.startswith('plt.'):
-            _, rem = arg.split('.')
+            rem = arg.split('.', 1)[1]
             args[i] = 'pyplot.' + rem
             continue
 
@@ -66,7 +66,7 @@ def expand_args(args):
             continue
 
         if arg.startswith('sns.'):
-            _, rem = arg.split('.')
+            rem = arg.split('.', 1)[1]
             args[i] = 'seaborn.' + rem
             continue
 
@@ -75,7 +75,7 @@ def expand_args(args):
             continue
 
         if arg.startswith('np.'):
-            _, rem = arg.split('.')
+            rem = arg.split('.', 1)[1]
             args[i] = 'numpy.' + rem
             continue
 
@@ -84,7 +84,7 @@ def expand_args(args):
             continue
 
         if arg.startswith('pd.'):
-            _, rem = arg.split('.')
+            rem = arg.split('.', 1)[1]
             args[i] = 'pandas.' + rem
             continue
 
