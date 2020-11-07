@@ -1,13 +1,16 @@
 import json
 import re
+from pathlib import Path
 
 import requests
 import yaml
 
+data_dir = f'{str(Path(__file__).resolve().parent.parent)}/data'
+
 
 # TODO automate this process
 def prepare_base_keywords():
-    base_file = '../data/base.json'
+    base_file = f'{data_dir}/base.json'
     with open(base_file, 'r') as f:
         data = json.load(f)
     return data
@@ -76,7 +79,7 @@ def parse_generated_docs(link, pattern=None):
 
 if __name__ == '__main__':
     data = prepare_base_keywords()
-    seed_file = 'seed.yaml'
+    seed_file = f'{data_dir}/seed.yaml'
     seed = load_seed_file(seed_file)
     for tensorflow_doc in seed['tensorflow']:
         print(f'processing: {tensorflow_doc["name"]}')
@@ -87,6 +90,6 @@ if __name__ == '__main__':
         doc_url = api_doc['url']
         data.update(parse_generated_docs(doc_url))
 
-    doc_file = '../data/ml.json'
+    doc_file = f'{data_dir}/ml.json'
     with open(doc_file, 'w') as f:
         json.dump(data, f)
