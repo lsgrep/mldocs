@@ -193,7 +193,7 @@ if __name__ == '__main__':
     # Create a global `Workflow3` object
     github_slug = 'lsgrep/mldocs'
     help_url = 'https://github.com/' + github_slug
-    wf = Workflow3(update_settings={'github_slug': 'lsgrep/mldocs',
+    wf = Workflow3(update_settings={'github_slug': github_slug,
                                     'frequency': 7,
                                     help_url: help_url})
     if wf.update_available:
