@@ -6,8 +6,8 @@ import os
 import string
 import sys
 
-import requests
-
+from libs import requests
+# from libs import requests
 from workflow import ICON_INFO
 # Workflow3 supports Alfred 3's new features. The `Workflow` class
 # is also compatible with Alfred 2.
@@ -195,7 +195,8 @@ if __name__ == '__main__':
     help_url = 'https://github.com/' + github_slug
     wf = Workflow3(update_settings={'github_slug': github_slug,
                                     'frequency': 7,
-                                    help_url: help_url})
+                                    help_url: help_url},
+                   libraries=[os.path.abspath(os.path.join(os.path.dirname(__file__), 'libs'))])
     if wf.update_available:
         # Add a notification to top of Script Filter results
         wf.add_item('New version available',
