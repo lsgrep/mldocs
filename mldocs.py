@@ -6,6 +6,8 @@ import os
 import string
 import sys
 
+sys.path.append(os.path.join(os.path.dirname(__file__), 'libs'))
+
 from libs import requests
 # from libs import requests
 from workflow import ICON_INFO
