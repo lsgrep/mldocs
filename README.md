@@ -11,6 +11,7 @@
 - [Scikit-learn](https://scikit-learn.org/stable/modules/classes.html)
 - [Statsmodels](https://www.statsmodels.org/stable/index.html)
 - [Seaborn](https://seaborn.pydata.org/api.html)
+- [Jax](https://jax.readthedocs.io/en/latest/jax.html)
 
 ## Install
 Checkout the [Releases](https://github.com/lsgrep/mldocs/releases), download the latest `mldocs.alfredworkflow`,
@@ -76,6 +77,7 @@ You can enter the query directly in the Alfred with the keyword `ml paper KEYWOR
 - [x] add Matplotlib support
 - [x] add Statsmodels support
 - [x] add Seaborn support
+- [x] add Jax support
 - [x] add Automatic Update
 - [ ] add Github Actions to generate `ml.json`
 - [ ] add keyword descriptions for TensorFlow
