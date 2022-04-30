@@ -13,12 +13,12 @@ from libs import requests
 from workflow import ICON_INFO
 # Workflow3 supports Alfred 3's new features. The `Workflow` class
 # is also compatible with Alfred 2.
-from workflow import Workflow3, web
+from workflow import Workflow3
 
 
 def get_ml_docs():
     data_url = 'https://raw.githubusercontent.com/lsgrep/mldocs/master/data/ml.json'
-    result = web.get(data_url)
+    result = requests.get(data_url)
     # throw an error if request failed
     # Workflow will catch this and show it to the user
     result.raise_for_status()
@@ -107,9 +107,8 @@ def search(args, keywords):
     # args is lower case already
     args = expand_args(args)
     # performance hack, eliminate dot expression
-    lower = string.lower
     for k in args:
-        keywords = [i for i in keywords if k in lower(i)]
+        keywords = [i for i in keywords if k in i.lower()]
     result = sorted(keywords, key=search_priority_len)
     return result
 
