@@ -16,6 +16,8 @@
 ## Install
 Checkout the [Releases](https://github.com/lsgrep/mldocs/releases), download the latest `mldocs.alfredworkflow`,
 then double click it(You have to have Alfred + Powerpack License).
+For MacOS Monterey or newer versions, please install `1.x.x` or new versions.
+For older MacOS versions, please use `0.0.5`.
 
 ## Update
 There is a background process that checks update every 7 days, 
