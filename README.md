@@ -82,6 +82,8 @@ You can enter the query directly in the Alfred with the keyword `ml paper KEYWOR
 - [x] add Seaborn support
 - [x] add Jax support
 - [x] Add Ray support
+- [x] Add LightGBM support
+- [x] Add XGBoost support
 - [x] add Automatic Update
 - [ ] add Github Actions to generate `ml.json`
 - [ ] add keyword descriptions for TensorFlow
