@@ -13,6 +13,7 @@
 - [Seaborn](https://seaborn.pydata.org/api.html)
 - [Jax](https://jax.readthedocs.io/en/latest/jax.html)
 - [Ray](https://docs.ray.io/en/latest/genindex.html)
+- [Langchain](https://api.python.langchain.com/en/latest/langchain_api_reference.html)
 
 ## Install
 Checkout the [Releases](https://github.com/lsgrep/mldocs/releases), download the latest `mldocs.alfredworkflow`,
