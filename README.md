@@ -14,6 +14,7 @@
 - [Jax](https://jax.readthedocs.io/en/latest/jax.html)
 - [Ray](https://docs.ray.io/en/latest/genindex.html)
 - [Langchain](https://api.python.langchain.com/en/latest/langchain_api_reference.html)
+- [Hugging Face Transformers](https://huggingface.co/docs/transformers/index)
 
 ## Install
 Checkout the [Releases](https://github.com/lsgrep/mldocs/releases), download the latest `mldocs.alfredworkflow`,
